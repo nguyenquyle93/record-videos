@@ -2,11 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import ModuleTest from './ModuleTest';
+import ScreenRecord from './Components/ScreenRecord/ScreenRecord';
+import Record from './Components/Record/Record';
+
 import reportWebVitals from './reportWebVitals';
+import "antd/dist/antd.css";
+import Crop from './Components/ScreenRecord/Crop';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    {/* <App />
+    <ModuleTest /> */}
+    <ScreenRecord />
+    <Crop />
   </React.StrictMode>,
   document.getElementById('root')
 );
