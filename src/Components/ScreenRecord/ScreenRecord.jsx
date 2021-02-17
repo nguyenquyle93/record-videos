@@ -23,7 +23,7 @@ function LiveStreamPreview({ stream }) {
     return null;
   }
 
-  return <video ref={videoPreviewRef} width={520} height={480} autoPlay />;
+  return <video ref={videoPreviewRef} width={'100%'} height={'100%'} autoPlay />;
 }
 
 
@@ -35,24 +35,20 @@ export default function ScreenRecord2() {
     liveStream,
     mediaBlob,
     stopRecording,
+    pauseRecording,
     getMediaStream,
     startRecording,
+    resumeRecording,
   } = useMediaRecorder({
     recordScreen: recordScreen,
     blobOptions: {
       type: 'video',
-      mimeType: 'video/webm;codecs=vp9',
       disableLogs: true,
-      // bitsPerSecond: 128000,
-      // frameRate: 30,
-      // frameInterval: 90,
-      // sampleRate: 96000,
-      // desiredSampRate: 16000,
-      // bufferSize: 16384,
-      // bitrate: 128000,
-      // video: 'HTMLVideoElement',
     },
-    mediaStreamConstraints: { audio: true, video: true }
+    mediaRecorderOptions: {
+      mimeType: "video/webm\;codecs=vp9",
+    },
+    mediaStreamConstraints: { audio: true, video: true },
   });
 
   return (
@@ -73,16 +69,46 @@ export default function ScreenRecord2() {
       <section>
         <button
           type="button"
-          onClick={() => startRecording(1000)}
+          onClick={() => {
+            startRecording(1000)
+          }}
           disabled={status === 'recording'}
           style={{
-            color: status === 'recording' ?
+            color: status === 'recording'?
               'gray' : 'red', 
-            borderColor: status === 'recording' ?
+            borderColor: status === 'recording'?
               '' : 'red', 
           }}
         >
           Start recording
+        </button>
+        <button
+          style={{
+            paddingLeft: 10,
+            color: status !== 'recording'?
+              'gray' : 'red',
+            borderColor: status !== 'recording'?
+              '' : 'red',
+          }}
+          type="button"
+          onClick={pauseRecording}
+          disabled={status !== 'recording'}
+        >
+          Pause recording
+        </button>
+        <button
+          style={{
+            paddingLeft: 10,
+            color: status !== 'recording' ?
+              'gray' : 'red',
+            borderColor: status !== 'recording' ?
+              '' : 'red',
+          }}
+          type="button"
+          onClick={resumeRecording}
+          disabled={status !== 'recording'}
+        >
+          Resume recording
         </button>
         <button
           style={{

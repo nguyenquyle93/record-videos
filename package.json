@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@dragan1810/use-media-recorder": "^0.0.2",
+    "@ffmpeg-installer/ffmpeg": "^1.0.20",
     "@material-ui/lab": "^4.0.0-alpha.57",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",

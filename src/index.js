@@ -15,7 +15,7 @@ ReactDOM.render(
     {/* <App />
     <ModuleTest /> */}
     <ScreenRecord />
-    <Crop />
+    {/* <Crop /> */}
   </React.StrictMode>,
   document.getElementById('root')
 );

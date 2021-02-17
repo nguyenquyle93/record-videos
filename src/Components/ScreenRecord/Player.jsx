@@ -24,6 +24,7 @@ export default function Player({ srcBlob, audio, status }) {
     setData(srcBlob)
     const date = format(new Date(), "yyyy-MM-dd' 'HH:mm:ss")
     set(date, srcBlob);
+    // set('test', new File([srcBlob], "filename", {type:"video/mkv"}));
     get(date).then((value) => setSelected([date,value]));
     entries().then((entries) => setVideoList(entries));
   }
@@ -42,19 +43,21 @@ export default function Player({ srcBlob, audio, status }) {
     setSelected(value);
   }
 
-  console.log('111', selected)
+
   return (
     <div>
       <Row>
-        <Col md={8} style={{textAlign: 'right'}}>
+        <Col md={8} style={{ textAlign: 'right' }}>
+          <div style={{paddingLeft:50}}>
     <video
       src={selected?.[1]?URL.createObjectURL(selected[1]):""}
-      width={520}
-      height={480}
+      width={'100%'}
+      height={'100%'}
       controls
       />
+          </div>
       <div>
-      <a href={selected?.[1]?URL.createObjectURL(selected[1]):""} target="_blank" download={`${selected[0]}.webm`}> Download </a>
+            <a href={selected?.[1] ? URL.createObjectURL(selected[1]) : ""} target="_blank" download={`${selected[0]}.webm`}> Download </a>
         </div>
         </Col>
         <Col >
